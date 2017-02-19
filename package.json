@@ -9,6 +9,6 @@
   "author": "Brian Spates",
   "license": "MIT",
   "dependencies": {
-    "kafka-wire-protocol": "^0.1.1"
+    "kafka-wire-protocol": "^0.1.3"
   }
 }
