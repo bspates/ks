@@ -1,0 +1,14 @@
+{
+  "name": "kafka-stream",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "Brian Spates",
+  "license": "MIT",
+  "dependencies": {
+    "kafka-wire-protocol": "^0.1.1"
+  }
+}

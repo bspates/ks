@@ -1,0 +1,42 @@
+version: '2'
+services:
+  test:
+    build: .
+    environment:
+      BOOTSTRAP_HOST: broker0
+      BOOTSTRAP_PORT: 9092
+    depends_on:
+      - broker0
+      - broker1
+    volumes:
+      - ./index.js/:/srv/app/index.js
+      - ./lib:/srv/app/lib
+      - ./package.json:/srv/app/package.json
+
+  zookeeper:
+    image: jplock/zookeeper:3.4.6
+    ports:
+      - 2181:2181
+
+  broker0:
+    image: ches/kafka
+    ports:
+      - 9092:9092
+      - 7203:7203
+    environment:
+      - KAFKA_ADVERTISED_HOST_NAME=broker0
+      - ZOOKEEPER_IP=zookeeper
+      - KAFKA_BROKER_ID=0
+    depends_on:
+      - zookeeper
+
+  broker1:
+    image: ches/kafka
+    ports:
+      - 9093:9092
+    environment:
+      - KAFKA_ADVERTISED_HOST_NAME=broker1
+      - ZOOKEEPER_IP=zookeeper
+      - KAFKA_BROKER_ID=1
+    depends_on:
+      - zookeeper
